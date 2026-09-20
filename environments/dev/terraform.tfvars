@@ -22,4 +22,26 @@ infra_config = {
       }
     }
   }
+  postgresql_servers = {
+    "psql-axion-dev-5577" = {
+      rg_key              = "rg-micro-prod"
+      sku_name            = "B_Standard_B1ms"
+      storage_mb          = 32768
+      version             = "15"
+      administrator_login = "psqladmin"
+      databases = {
+        "axiondb" = {
+          collation = "en_US.utf8"
+          charset   = "UTF8"
+        }
+      }
+      firewall_rules = {
+        "allow-azure-services" = {
+          start_ip_address = "0.0.0.0"
+          end_ip_address   = "0.0.0.0"
+        }
+      }
+      tags = { Environment = "Dev", ManagedBy = "Terraform", Tier = "Burstable-POC" }
+    }
+  }
 }
