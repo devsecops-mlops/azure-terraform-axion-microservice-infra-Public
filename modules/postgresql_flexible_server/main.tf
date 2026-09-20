@@ -23,7 +23,7 @@ resource "azurerm_postgresql_flexible_server" "server" {
 
   backup_retention_days         = each.value.backup_retention_days
   geo_redundant_backup_enabled  = each.value.geo_redundant_backup_enabled
-  zone                          = each.value.zone
+  # zone                          = each.value.zone
   public_network_access_enabled = each.value.delegated_subnet_id != null ? false : each.value.public_network_access_enabled
 
   delegated_subnet_id = each.value.delegated_subnet_id
